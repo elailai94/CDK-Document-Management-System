@@ -1,10 +1,10 @@
-import { AppBar, Button, Toolbar } from "@material-ui/core";
-
-import BackupIcon from "@material-ui/icons/Backup";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Backup as BackupIcon } from "@mui/icons-material";
+import { AppBar, Button, Toolbar } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
 import UserBadge from "../components/UserBadge";
-import { makeStyles } from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Header() {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <AppBar className={classes.root} position="relative">
@@ -36,13 +36,13 @@ function Header() {
             src="/images/globomantics-logo-grey.png"
             alt="Globomantics Logo"
             className={classes.logo}
-            onClick={() => history.push("/")}
+            onClick={() => navigate("/")}
           />
         </div>
         <Button
           variant="outlined"
           color="primary"
-          onClick={() => history.push("/upload")}
+          onClick={() => navigate("/upload")}
           className={classes.uploadButton}
           startIcon={<BackupIcon />}
         >

@@ -1,14 +1,14 @@
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import {
   Avatar,
   Button,
   Grid,
   Typography,
-} from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
-import PropTypes from "prop-types";
 import { getFormattedDate } from "../../util";
-import { makeStyles } from "@material-ui/core/styles";
 import { reportCommentForModeration } from "../../services";
 import { useUser } from "../../UserContext";
 

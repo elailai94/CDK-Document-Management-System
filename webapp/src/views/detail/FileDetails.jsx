@@ -1,7 +1,7 @@
+import React from "react";
+import PropTypes from "prop-types";
 import MetadataItem from "../../components/MetadataItem";
 import MetadataSection from "../../components/MetadataSection";
-import PropTypes from "prop-types";
-import React from "react";
 
 function FileDetails({ details }) {
   return (

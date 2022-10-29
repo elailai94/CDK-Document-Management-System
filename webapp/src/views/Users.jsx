@@ -1,10 +1,10 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Grid } from "@mui/material";
 import { makeStyles, useTheme } from "@mui/styles";
 
-import React from "react";
-import { useHistory } from "react-router-dom";
-import Page from "../containers/Page";
 import UsersTable from "../components/UsersTable";
+import Page from "../containers/Page";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
 
 function Users() {
   const theme = useTheme();
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles(theme);
 
   const onCreateUser = () => {
-    history.push("/users/create");
+    navigate("/users/create");
   };
 
   const getActionButtons = () => (

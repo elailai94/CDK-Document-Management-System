@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+import { PermIdentity as PermIdentityIcon } from "@mui/icons-material";
 import {
   Avatar,
   Button,
@@ -8,10 +10,8 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-
-import { PermIdentity as PermIdentityIcon } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
+
 import LoadingView from "../components/LoadingView";
 import Page from "../containers/Page";
 import { updateCurrentUserProfile } from "../services";

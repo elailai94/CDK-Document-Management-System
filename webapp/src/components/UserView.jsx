@@ -1,8 +1,8 @@
-import { Avatar, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
-
 import PropTypes from "prop-types";
+import { Avatar, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+
 import { useUser } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({

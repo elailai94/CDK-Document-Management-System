@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+import { Backup as BackupIcon } from "@mui/icons-material";
 import {
   Alert,
   Button,
@@ -8,11 +10,9 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-
-import { Backup as BackupIcon } from "@mui/icons-material";
-import ChipInput from "material-ui-chip-input";
 import { makeStyles } from "@mui/styles";
+import ChipInput from "material-ui-chip-input";
+
 import Page from "../containers/Page";
 import { uploadDocument } from "../services";
 

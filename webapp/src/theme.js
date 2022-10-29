@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/styles";
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   spacing: 6,

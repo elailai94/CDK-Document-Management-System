@@ -1,12 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import PropTypes from "prop-types";
-import { getFormattedDate, getReadableFileSize } from "../../util";
 
 import MetadataItem from "../../components/MetadataItem";
 import MetadataSection from "../../components/MetadataSection";
 import UserView from "../../components/UserView";
+import { getFormattedDate, getReadableFileSize } from "../../util";
 
 const useStyles = makeStyles((theme) => ({
   uploaderContainer: {

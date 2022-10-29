@@ -1,7 +1,6 @@
-import { CircularProgress, Grid } from "@mui/material";
-
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
+import { CircularProgress, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({

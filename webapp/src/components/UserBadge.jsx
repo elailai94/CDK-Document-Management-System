@@ -1,3 +1,5 @@
+import React, { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   ClickAwayListener,
@@ -8,11 +10,9 @@ import {
   Paper,
   Popper,
 } from "@mui/material";
-
-import { Auth } from "aws-amplify";
-import React, { useCallback } from "react";
 import { makeStyles } from "@mui/styles";
-import { useHistory } from "react-router-dom";
+import { Auth } from "aws-amplify";
+
 import { useUser } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 function UserBadge() {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const { user } = useUser();
@@ -37,12 +37,12 @@ function UserBadge() {
   };
 
   const onProfileEdit = () => {
-    history.push("/profile");
+    navigate("/profile");
     setOpen(false);
   };
 
   const onManageUsers = () => {
-    history.push("/users");
+    navigate("/users");
     setOpen(false);
   };
 

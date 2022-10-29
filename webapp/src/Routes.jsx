@@ -1,15 +1,11 @@
-import "./App.css";
-
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-} from "react-router-dom";
+import React from "react";
+import { Route, BrowserRouter as Router, Routes as Switch } from "react-router-dom";
+import { Paper } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 
-import React from "react";
-import { Paper } from "@mui/material";
+import "./App.css";
+import theme from "./theme";
 import CreateUser from "./views/CreateUser";
 import Detail from "./views/Detail";
 import Footer from "./views/Footer";
@@ -20,7 +16,6 @@ import Profile from "./views/Profile";
 import Upload from "./views/Upload";
 import { UserProvider } from "./UserContext";
 import Users from "./views/Users";
-import theme from "./theme";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -41,27 +36,23 @@ function Routes() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Route
-          render={() => (
-            <UserProvider>
-              <Paper className={classes.root}>
-                <Header />
-                <div className={classes.content}>
-                  <Switch>
-                    <Route exact path="/" component={List} />
-                    <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/users" component={Users} />
-                    <Route exact path="/users/create" component={CreateUser} />
-                    <Route path="/document/:documentId" component={Detail} />
-                    <Route exact path="/upload" component={Upload} />
-                    <Route path="*" component={NotFound} />
-                  </Switch>
-                </div>
-                <Footer />
-              </Paper>
-            </UserProvider>
-          )}
-        />
+        <UserProvider>
+          <Paper className={classes.root}>
+            <Header />
+            <div className={classes.content}>
+              <Switch>
+                <Route path="/" element={<List />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/users/create" element={<CreateUser />} />
+                <Route path="/document/:documentId" element={<Detail />} />
+                <Route path="/upload" element={<Upload />} />
+                <Route path="*" element={<NotFound />} />
+              </Switch>
+            </div>
+            <Footer />
+          </Paper>
+        </UserProvider>
       </Router>
     </ThemeProvider>
   );

@@ -1,9 +1,9 @@
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-
-import Chip from "@material-ui/core/Chip";
-import MetadataSection from "../../components/MetadataSection";
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
+import { Chip } from "@mui/material";
+import { makeStyles, useTheme } from "@mui/styles";
+
+import MetadataSection from "../../components/MetadataSection";
 
 const useStyles = makeStyles((theme) => ({
   tagContainer: {

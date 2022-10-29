@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import {
   Avatar,
   Button,
@@ -6,12 +8,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@mui/styles";
-import { createComment, getCommentsForDocument } from "../../services";
 
 import Comment from "./Comment";
+import { createComment, getCommentsForDocument } from "../../services";
 import LoadingView from "../../components/LoadingView";
 import { useUser } from "../../UserContext";
 
@@ -103,7 +103,7 @@ function Comments({ docId }) {
             className={classes.commentInput}
             multiline
             rows={2}
-            rowsMax={4}
+            rowsmax={4}
             value={commentContent}
             onChange={(e) => setCommentContent(e.target.value)}
           />

@@ -1,8 +1,7 @@
-import { FileIcon, defaultStyles } from "react-file-icon";
-
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
+import { FileIcon, defaultStyles } from "react-file-icon";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({

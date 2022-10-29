@@ -1,3 +1,7 @@
+import React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet-async";
+import { NavLink } from "react-router-dom";
 import {
   Breadcrumbs,
   Container,
@@ -5,11 +9,6 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-
-import { Helmet } from "react-helmet-async";
-import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
-import React from "react";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +42,7 @@ function Page({
                 return <Typography key={`bc-${bc.name}`}>{ bc.name }</Typography>;
               }
               return (
-                <Link component={NavLink} exact to={bc.link} key={`bc-${bc.name}`}>
+                <Link component={NavLink} exact="true" to={bc.link} key={`bc-${bc.name}`}>
                   {bc.name}
                 </Link>
               );

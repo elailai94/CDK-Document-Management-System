@@ -1,6 +1,6 @@
+import React from "react";
 import { makeStyles, useTheme } from "@mui/styles";
 
-import React from "react";
 import DocumentsTable from "../components/DocumentsTable";
 import Page from "../containers/Page";
 

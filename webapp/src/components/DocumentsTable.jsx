@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Chip } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import MUIDataTable from "mui-datatables";
-import { deleteDocument, getAllDocuments } from "../services";
-import { getFormattedDate, getReadableFileSize } from "../util";
 
 import FileName from "./DataGrid/FileName";
 import LoadingView from "./LoadingView";
 import UserView from "./UserView";
+import { deleteDocument, getAllDocuments } from "../services";
+import { getFormattedDate, getReadableFileSize } from "../util";
 
 const useStyles = makeStyles(() => ({
   root: {},

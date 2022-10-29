@@ -1,4 +1,7 @@
+import React, { useEffect, useState } from "react";
+import { PermIdentity as PermIdentityIcon } from "@mui/icons-material";
 import {
+  Alert,
   Button,
   Card,
   CardContent,
@@ -11,13 +14,10 @@ import {
   RadioGroup,
   TextField,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-
-import MuiAlert from "@material-ui/lab/Alert";
-import Page from "../containers/Page";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import { createNewUser } from "../services";
 import { makeStyles } from "@mui/styles";
+
+import Page from "../containers/Page";
+import { createNewUser } from "../services";
 import { useUser } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -124,9 +124,9 @@ function CreateUser() {
   return (
     <Page title="Create User" breadcrumbs={getBreadcrumbs()}>
       { isSuccessVisible
-      && <MuiAlert onClose={() => setIsSuccessVisible(false)} className={classes.alert} severity="success" elevation={6} variant="filled">User successfully created</MuiAlert> }
+      && <Alert onClose={() => setIsSuccessVisible(false)} className={classes.alert} severity="success" elevation={6} variant="filled">User successfully created</Alert> }
       { isErrorVisible
-      && <MuiAlert onClose={() => setIsErrorVisible(false)} className={classes.alert} severity="error" elevation={6} variant="filled">Could not create user. Please try again later.</MuiAlert> }
+      && <Alert onClose={() => setIsErrorVisible(false)} className={classes.alert} severity="error" elevation={6} variant="filled">Could not create user. Please try again later.</Alert> }
       <Grid container spacing={2} alignItems="stretch">
         <Grid item xs={12} sm={6} className={classes.container}>
           <Card className={classes.card}>

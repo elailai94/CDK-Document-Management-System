@@ -1,8 +1,7 @@
-import "./App.css";
-
+import React from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
-import React from "react";
+import "./App.css";
 import Routes from "./Routes";
 
 const helmetContext = {};
