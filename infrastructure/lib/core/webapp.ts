@@ -1,13 +1,14 @@
 import * as cdk from "aws-cdk-lib";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
-import * as path from "path";
 import * as s3 from "aws-cdk-lib/aws-s3";
-import * as s3Deploy from "aws-cdk-lib/aws-s3-deployment";
+import * as webAppTools from "cdk-webapp-tools";
 
 import { Construct } from "constructs";
 
 interface WebAppProps {
+  baseDirectory: string;
   hostingBucket: s3.IBucket;
+  relativeWebAppPath: string;
 }
 
 class WebApp extends Construct {
@@ -50,6 +51,21 @@ class WebApp extends Construct {
     );
 
     props.hostingBucket.grantRead(originAccessIdentity);
+
+    new webAppTools.WebAppDeployment(this, "WebAppDeployment", {
+      baseDirectory: props.baseDirectory,
+      bucket: props.hostingBucket,
+      buildCommand: "yarn build",
+      buildDirectory: "build",
+      prune: true,
+      relativeWebAppPath: props.relativeWebAppPath,
+      webDistribution: this.webDistribution,
+      webDistributionPaths: ["/*"],
+    });
+
+    new cdk.CfnOutput(this, "CloudFrontURL", {
+      value: `https://${this.webDistribution.distributionDomainName}`,
+    });
   }
 }
 

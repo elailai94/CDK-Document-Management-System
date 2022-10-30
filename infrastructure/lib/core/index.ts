@@ -11,7 +11,9 @@ class ApplicationStack extends cdk.Stack {
     const storage = new Storage(this, "Storage");
 
     new WebApp(this, "WebApp", {
+      baseDirectory: "../",
       hostingBucket: storage.hostingBucket,
+      relativeWebAppPath: "webapp",
     });
   }
 }
