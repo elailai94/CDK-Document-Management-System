@@ -3,7 +3,7 @@ import * as s3 from "aws-cdk-lib/aws-s3";
 
 import { Construct } from "constructs";
 
-class AssetStorage extends Construct {
+class Storage extends Construct {
   public readonly assetBucket: s3.IBucket;
   public readonly hostingBucket: s3.IBucket;
   public readonly uploadBucket: s3.IBucket;
@@ -28,4 +28,4 @@ class AssetStorage extends Construct {
   }
 }
 
-export { AssetStorage };
+export { Storage };
