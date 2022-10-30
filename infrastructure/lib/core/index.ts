@@ -1,12 +1,14 @@
 import * as cdk from "aws-cdk-lib";
+
+import { AssetStorage } from "./storage";
 import { Construct } from "constructs";
 
-export class ApplicationStack extends cdk.Stack {
+class ApplicationStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    new cdk.CfnOutput(this, "TestOutput", {
-      value: "Hey, it worked!"
-    });
+    new AssetStorage(this, "AssetStorage");
   }
 }
+
+export { ApplicationStack };
