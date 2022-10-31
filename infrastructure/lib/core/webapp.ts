@@ -57,7 +57,7 @@ class WebApp extends Construct {
       bucket: props.hostingBucket,
       buildCommand: "yarn build",
       buildDirectory: "build",
-      prune: true,
+      prune: false,
       relativeWebAppPath: props.relativeWebAppPath,
       webDistribution: this.webDistribution,
       webDistributionPaths: ["/*"],

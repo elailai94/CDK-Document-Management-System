@@ -1,6 +1,6 @@
 {
   "name": "@cdk-document-management-system/webapp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "main": "build/index.js",
   "devDependencies": {
@@ -11,7 +11,7 @@
     "@emotion/styled": "^11.10.5",
     "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.10.9",
-    "@mui/material": "^5.10.11",
+    "@mui/material": "^5.10.12",
     "@mui/styles": "^5.10.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
