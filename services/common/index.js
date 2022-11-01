@@ -1,3 +1,4 @@
 import { awsClients } from "./aws";
+import { generateID } from "./id";
 
-export { awsClients };
+export { awsClients, generateID };
