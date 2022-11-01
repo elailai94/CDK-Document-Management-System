@@ -5,12 +5,25 @@
  * management system application (create, delete, get).
  */
 
-import { Matcher, RouterType, createRouter } from "lambda-micro";
+import {
+  Matcher,
+  RouterType,
+  createRouter,
+  validateBodyJSONVariables,
+  validatePathVariables,
+} from "lambda-micro";
 import { awsClients, generateID } from "../common";
 
 // Utilize the DynamoDB document client
 const dynamoDB = awsClients.dynamoDB();
 const tableName = process.env.DYNAMO_DB_NAME;
+
+// JSON schemas used to validate requests to the service calls
+const schemas = {
+  createComment: require("./schemas/createComment.json"),
+  deleteComment: require("./schemas/deleteComment.json"),
+  getComments: require("./schemas/getComments.json"),
+};
 
 // Service functions
 async function getAllCommentsForDocument(request, response) {
@@ -81,15 +94,27 @@ const router = createRouter(RouterType.HTTP_API_V2);
 
 // Get all comments for a document
 // GET /comments/{:docid}
-router.add(Matcher.HttpApiV2("GET", "/comments/{:docid}"), getAllCommentsForDocument);
+router.add(
+  Matcher.HttpApiV2("GET", "/comments/{:docid}"),
+  validatePathVariables(schemas.getComments),
+  getAllCommentsForDocument,
+);
 
 // Create a new comment  for a document
 // POST /comments/{:docid}
-router.add(Matcher.HttpApiV2("POST", "/comments/{:docid}"), createComment);
+router.add(
+  Matcher.HttpApiV2("POST", "/comments/{:docid}"),
+  validateBodyJSONVariables(schemas.createComment),
+  createComment,
+);
 
 // Delete a comment for a document
 // DELETE /comments/{:docid}/{:commentid}
-router.add(Matcher.HttpApiV2("DELETE", "/comments/{:docid}/{:commentid}"), deleteComment);
+router.add(
+  Matcher.HttpApiV2("DELETE", "/comments/{:docid}/{:commentid}"),
+  validateBodyJSONVariables(schemas.deleteComment),
+  deleteComment,
+);
 
 // Lambda handler
 function handleComments(event, context) {
