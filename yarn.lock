@@ -234,6 +234,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-cdk/aws-apigatewayv2-alpha@npm:2.50.0-alpha.0":
+  version: 2.50.0-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-alpha@npm:2.50.0-alpha.0"
+  peerDependencies:
+    aws-cdk-lib: ^2.50.0
+    constructs: ^10.0.0
+  checksum: 9e9b5d90b5de8864a932ba2971884413e65a675056548e41c68a05ebbeb41b5b1013f8cd4f2918c86fdfacc4c249ef52759234e9be10d3eeddea0e9633ec503a
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:2.50.0-alpha.0":
+  version: 2.50.0-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:2.50.0-alpha.0"
+  peerDependencies:
+    "@aws-cdk/aws-apigatewayv2-alpha": 2.50.0-alpha.0
+    aws-cdk-lib: ^2.50.0
+    constructs: ^10.0.0
+  checksum: 8b965130b6893e521915cb5461aa41ca200bc12b9cebe52324ecd8bee77817c028c6fc9617341ec5674c3c9478c58b758438dcdbe36d9253bd007ca67066bb49
+  languageName: node
+  linkType: hard
+
 "@aws-crypto/crc32@npm:2.0.0":
   version: 2.0.0
   resolution: "@aws-crypto/crc32@npm:2.0.0"
@@ -3988,6 +4009,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cdk-document-management-system/infrastructure@workspace:infrastructure"
   dependencies:
+    "@aws-cdk/aws-apigatewayv2-alpha": 2.50.0-alpha.0
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": 2.50.0-alpha.0
     "@types/jest": ^29.2.1
     "@types/node": ^18.11.9
     "@types/prettier": ^2.7.1
