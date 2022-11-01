@@ -3988,13 +3988,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cdk-document-management-system/infrastructure@workspace:infrastructure"
   dependencies:
-    "@types/jest": ^29.2.0
-    "@types/node": ^18.11.8
+    "@types/jest": ^29.2.1
+    "@types/node": ^18.11.9
     "@types/prettier": ^2.7.1
-    aws-cdk: 2.49.0
-    aws-cdk-lib: 2.49.0
+    aws-cdk: 2.50.0
+    aws-cdk-lib: 2.50.0
     cdk-webapp-tools: 2.49.3
-    constructs: ^10.1.145
+    constructs: ^10.1.146
     jest: ^29.2.2
     ts-jest: ^29.0.3
     ts-node: ^10.9.1
@@ -5925,6 +5925,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jest@npm:^29.2.1":
+  version: 29.2.1
+  resolution: "@types/jest@npm:29.2.1"
+  dependencies:
+    expect: ^29.0.0
+    pretty-format: ^29.0.0
+  checksum: 5610c9a44c57f6dc39cf54429ea8d04574ad4c3e3ddf9a2621882aa94a0758a42ca97a0d0aec41a8d0b149fa63bf3d077d1f07c1f1d82e3d89ad7408de211255
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -5953,10 +5963,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.8":
-  version: 18.11.8
-  resolution: "@types/node@npm:18.11.8"
-  checksum: 60b358f97c1a029722dc785811b217615ef20249c3fbde60a65869cfd7a5cd5b1872ee95c79c187ef70e5a078f4ac7670d2129803985268b1f021ad6e8040af8
+"@types/node@npm:^18.11.9":
+  version: 18.11.9
+  resolution: "@types/node@npm:18.11.9"
+  checksum: cc0aae109e9b7adefc32eecb838d6fad931663bb06484b5e9cbbbf74865c721b03d16fd8d74ad90e31dbe093d956a7c2c306ba5429ba0c00f3f7505103d7a496
   languageName: node
   linkType: hard
 
@@ -7037,9 +7047,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-cdk-lib@npm:2.49.0":
-  version: 2.49.0
-  resolution: "aws-cdk-lib@npm:2.49.0"
+"aws-cdk-lib@npm:2.50.0":
+  version: 2.50.0
+  resolution: "aws-cdk-lib@npm:2.50.0"
   dependencies:
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
@@ -7052,13 +7062,13 @@ __metadata:
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: 11f112ef6babe5b172d04573da788372d2db6ec07bcd2f204f1fbd76c330842614e5c8f1632a7598781566fc96c3640a9435e9d4dbae53f36a39d2ea22ad76c5
+  checksum: 81a5734399d0577f2e9cc74e9cc6c182f9630ebf522b8f3b40c2463f8e956df39ec24bc9c3a23a38d4d50225799f39d6ddbabd7eb3f22ad907eb0c582816d1bb
   languageName: node
   linkType: hard
 
-"aws-cdk@npm:2.49.0":
-  version: 2.49.0
-  resolution: "aws-cdk@npm:2.49.0"
+"aws-cdk@npm:2.50.0":
+  version: 2.50.0
+  resolution: "aws-cdk@npm:2.50.0"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -7066,7 +7076,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: b1aed3e3a6ab31d7cf9312978fce9b13cbf1cb4524c65ecee59d572ddf36e5fca9889cefe84fa99da65d1bb13de1d623cff7ac5fc52e44085be5fc543c8e6166
+  checksum: 17351804dfc2709c08e2aed9da3692ca96438ff0e54a29ebab51fc849f29e6830b52245749cae274b4869be3e2cb4f37f79220313beb5cdce649df2b02b2374e
   languageName: node
   linkType: hard
 
@@ -8088,10 +8098,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"constructs@npm:^10.1.145":
-  version: 10.1.145
-  resolution: "constructs@npm:10.1.145"
-  checksum: 96765a4cc5288c0282c5a14769461fc44289d152c7d5fb61f70d8c60ced47ef684ab8449a097420dd479d0068c900e029b93ff7688de1424fd439285cc721b84
+"constructs@npm:^10.1.146":
+  version: 10.1.146
+  resolution: "constructs@npm:10.1.146"
+  checksum: e5ea1671dd2098c1afc60529cb5d5ea5d966f594761835e2320208e956683f2098ff726835cff71a73faf3b598f8fc46e9c99c1a9974a024dc1203a3613e4b70
   languageName: node
   linkType: hard
 

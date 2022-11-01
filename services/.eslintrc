@@ -8,6 +8,7 @@
   "rules": {
     "consistent-return": "off",
     "global-require": "off",
+    "import/no-relative-packages": "off",
     "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "prettier/prettier": ["error", { "singleQuote": false }]
