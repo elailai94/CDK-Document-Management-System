@@ -1,6 +1,9 @@
 import * as apigateway from "@aws-cdk/aws-apigatewayv2-alpha";
+import * as apigatewayv2 from "aws-cdk-lib/aws-apigatewayv2";
 import * as cdk from "aws-cdk-lib";
+import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as sqs from "aws-cdk-lib/aws-sqs";
 
 import { Construct } from "constructs";
 import { HttpLambdaIntegration } from "@aws-cdk/aws-apigatewayv2-integrations-alpha";
@@ -41,12 +44,46 @@ class API extends Construct {
       createDefaultStage: true,
     });
 
-    const integration = new HttpLambdaIntegration("HttpLambdaIntegration", props.commentsService);
+    // Comments service
+    const lambdaIntegration = new HttpLambdaIntegration("HttpLambdaIntegration", props.commentsService);
 
     this.httpAPI.addRoutes({
-      integration,
+      integration: lambdaIntegration,
       methods: serviceMethods,
       path: "/comments/{proxy+}",
+    });
+
+    // Moderation service
+    const queue = new sqs.Queue(this, "ModerationQueue");
+
+    const moderateRole = new iam.Role(this, "ModerationRole", {
+      assumedBy: new iam.ServicePrincipal("apigateway.amazonaws.com"),
+    });
+
+    moderateRole.addToPolicy(
+      new iam.PolicyStatement({
+        actions: ["sqs:SendMessage"],
+        resources: [queue.queueArn],
+      }),
+    );
+
+    const sqsIntegration = new apigatewayv2.CfnIntegration(this, "ModerateIntegration", {
+      apiId: this.httpAPI.apiId,
+      credentialsArn: moderateRole.roleArn,
+      integrationSubtype: "SQS-SendMessage",
+      integrationType: "AWS_PROXY",
+      payloadFormatVersion: "1.0",
+      requestParameters: {
+        MessageBody: "$request.body",
+        QueueUrl: queue.queueUrl,
+      },
+      timeoutInMillis: 10000,
+    });
+
+    new apigatewayv2.CfnRoute(this, "ModerateRoute", {
+      apiId: this.httpAPI.apiId,
+      routeKey: "POST /moderate",
+      target: `integrations/${sqsIntegration.ref}`,
     });
 
     new cdk.CfnOutput(this, "APIEndpoint", {
