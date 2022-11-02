@@ -1,3 +1,4 @@
+import * as apigateway from "@aws-cdk/aws-apigatewayv2-alpha";
 import * as cdk from "aws-cdk-lib";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as s3 from "aws-cdk-lib/aws-s3";
@@ -8,6 +9,7 @@ import { Construct } from "constructs";
 interface WebAppProps {
   baseDirectory: string;
   hostingBucket: s3.IBucket;
+  httpAPI: apigateway.HttpApi;
   relativeWebAppPath: string;
 }
 
@@ -52,7 +54,7 @@ class WebApp extends Construct {
 
     props.hostingBucket.grantRead(originAccessIdentity);
 
-    new webAppTools.WebAppDeployment(this, "WebAppDeployment", {
+    const deployment = new webAppTools.WebAppDeployment(this, "WebAppDeployment", {
       baseDirectory: props.baseDirectory,
       bucket: props.hostingBucket,
       buildCommand: "yarn build",
@@ -62,6 +64,15 @@ class WebApp extends Construct {
       webDistribution: this.webDistribution,
       webDistributionPaths: ["/*"],
     });
+
+    new webAppTools.WebAppConfig(this, "WebAppConfig", {
+      bucket: props.hostingBucket,
+      configData: {
+        apiEndpoint: props.httpAPI.apiEndpoint,
+      },
+      globalVariableName: "appConfig",
+      key: "config.js",
+    }).node.addDependency(deployment);
 
     new cdk.CfnOutput(this, "CloudFrontURL", {
       value: `https://${this.webDistribution.distributionDomainName}`,

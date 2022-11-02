@@ -48,6 +48,10 @@ class API extends Construct {
       methods: serviceMethods,
       path: "/comments/{proxy+}",
     });
+
+    new cdk.CfnOutput(this, "APIEndpoint", {
+      value: this.httpAPI.url!,
+    });
   }
 }
 

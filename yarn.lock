@@ -4017,7 +4017,7 @@ __metadata:
     aws-cdk: 2.50.0
     aws-cdk-lib: 2.50.0
     cdk-webapp-tools: 2.49.3
-    constructs: ^10.1.146
+    constructs: ^10.1.147
     jest: ^29.2.2
     ts-jest: ^29.0.3
     ts-node: ^10.9.1
@@ -4031,7 +4031,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cdk-document-management-system/services-common@workspace:services/common"
   dependencies:
-    aws-sdk: ^2.1244.0
+    aws-sdk: ^2.1245.0
     ksuid: ^3.0.0
   languageName: unknown
   linkType: soft
@@ -4059,7 +4059,7 @@ __metadata:
     react-dom: ^18.2.0
     react-file-icon: ^1.2.0
     react-helmet-async: ^1.3.0
-    react-router-dom: ^6.4.2
+    react-router-dom: ^6.4.3
     react-scripts: 5.0.1
     web-vitals: ^3.0.4
   languageName: unknown
@@ -5330,10 +5330,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@remix-run/router@npm:1.0.2"
-  checksum: bf410f9cbb31308fc306bc8c5e3a732b9ad81ddb84281e37804bdd196b6db7ddd86abc29e15c5b21883e01b37f250d0b8db7bee5f5a9af6c7c532b68280676c9
+"@remix-run/router@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@remix-run/router@npm:1.0.3"
+  checksum: 7e535f3c24bf6b0a48aff3de70ee74e5402fe93105aa9bd01f275d5d8f5a9a8a7cadec08d18cf5544d4f24bc9d7a091abc1c9d4ea8efb2893e9077f104a51459
   languageName: node
   linkType: hard
 
@@ -7103,9 +7103,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:^2.1244.0":
-  version: 2.1244.0
-  resolution: "aws-sdk@npm:2.1244.0"
+"aws-sdk@npm:^2.1245.0":
+  version: 2.1245.0
+  resolution: "aws-sdk@npm:2.1245.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -7117,7 +7117,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.4.19
-  checksum: 17aceaf86648dd25c18ca1b09a5ff76b52737e2da237755bd3c7beca78fe5d22f4047200ab39757d02af1d0f2ff557bc04c1f877a87989cac9318928a37578a6
+  checksum: f48ed4e799a88baa34ead56f72ac622e5c001c22d0f35135e60e556bdd51e29c86f8211a9ec4ecae0c997a8dc108d51c65ddcda42c562eb071c8e39adcadb9fa
   languageName: node
   linkType: hard
 
@@ -8121,10 +8121,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"constructs@npm:^10.1.146":
-  version: 10.1.146
-  resolution: "constructs@npm:10.1.146"
-  checksum: e5ea1671dd2098c1afc60529cb5d5ea5d966f594761835e2320208e956683f2098ff726835cff71a73faf3b598f8fc46e9c99c1a9974a024dc1203a3613e4b70
+"constructs@npm:^10.1.147":
+  version: 10.1.147
+  resolution: "constructs@npm:10.1.147"
+  checksum: 45e221dc9d17f3b51217014a796252c3e91711816143984929df801cef705064d1cd45538e978be89256919c0456007bbea5c9423a44350dbd634f511c4aee57
   languageName: node
   linkType: hard
 
@@ -15334,27 +15334,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^6.4.2":
-  version: 6.4.2
-  resolution: "react-router-dom@npm:6.4.2"
+"react-router-dom@npm:^6.4.3":
+  version: 6.4.3
+  resolution: "react-router-dom@npm:6.4.3"
   dependencies:
-    "@remix-run/router": 1.0.2
-    react-router: 6.4.2
+    "@remix-run/router": 1.0.3
+    react-router: 6.4.3
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 858e6a5c4c5da56615dbf53118d576d61851157f077805dfe476b10c332329f8b1494062d75a8de6f1bdd35fbcb8a510f8e23beb2306440d2452b9f2fe4b079d
+  checksum: 67a44d8dc45761a1c88793cac73839bb657168ef61b9473eb39b186b4a3ea1472454fd96f8997dc541cb1e79a723d62f9503cbc9179b63b8f1d634ed6d2b079a
   languageName: node
   linkType: hard
 
-"react-router@npm:6.4.2":
-  version: 6.4.2
-  resolution: "react-router@npm:6.4.2"
+"react-router@npm:6.4.3":
+  version: 6.4.3
+  resolution: "react-router@npm:6.4.3"
   dependencies:
-    "@remix-run/router": 1.0.2
+    "@remix-run/router": 1.0.3
   peerDependencies:
     react: ">=16.8"
-  checksum: c229d65d9b0df88dd4e8c57bd59793e371f2c84b4cb200b77ead9f601c8fd7758f72acfffc9a2fc5cb31877af3a0e08ae24aeb75ab2b20681f3b1d33ca671552
+  checksum: b89c0495c6837b1457915c08c5acc4eb7a2e9e3fae0420faf9bfc6311ecdfe78627cc1034c0e975bccd9aeeb70d1dcc5021322779dd3053d94c47e37339d77eb
   languageName: node
   linkType: hard
 

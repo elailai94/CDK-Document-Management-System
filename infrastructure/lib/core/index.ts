@@ -19,13 +19,14 @@ class ApplicationStack extends cdk.Stack {
       documentsTable: database.documentsTable,
     });
 
-    new API(this, "API", {
+    const api = new API(this, "API", {
       commentsService: services.commentsService,
     });
 
     new WebApp(this, "WebApp", {
       baseDirectory: "../",
       hostingBucket: storage.hostingBucket,
+      httpAPI: api.httpAPI,
       relativeWebAppPath: "webapp",
     });
   }
