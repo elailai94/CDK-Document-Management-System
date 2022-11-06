@@ -35,6 +35,7 @@ class Services extends Construct {
 
     this.documentsService = new NodejsServiceFunction(this, "DocumentsService", {
       entry: path.join(__dirname, "..", "..", "..", "services", "documents", "index.js"),
+      handler: "handleDocuments",
       timeout: cdk.Duration.seconds(10),
     });
 
