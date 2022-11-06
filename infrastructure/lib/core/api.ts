@@ -10,6 +10,7 @@ import { HttpLambdaIntegration } from "@aws-cdk/aws-apigatewayv2-integrations-al
 
 interface APIProps {
   commentsService: lambda.IFunction;
+  documentsService: lambda.IFunction;
 }
 
 class API extends Construct {
@@ -45,12 +46,21 @@ class API extends Construct {
     });
 
     // Comments service
-    const lambdaIntegration = new HttpLambdaIntegration("HttpLambdaIntegration", props.commentsService);
+    const commentsIntegration = new HttpLambdaIntegration("CommentsIntegration", props.commentsService);
 
     this.httpAPI.addRoutes({
-      integration: lambdaIntegration,
+      integration: commentsIntegration,
       methods: serviceMethods,
       path: "/comments/{proxy+}",
+    });
+
+    // Documents service
+    const documentsIntegration = new HttpLambdaIntegration("DocumentsIntegration", props.documentsService);
+
+    this.httpAPI.addRoutes({
+      integration: documentsIntegration,
+      methods: serviceMethods,
+      path: "/documents/{proxy+}",
     });
 
     // Moderation service

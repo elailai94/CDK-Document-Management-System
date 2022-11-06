@@ -14,19 +14,21 @@
  * @param {number} timeout Number of milliseconds to wait until data is returned
  * @returns {object} The data returned from the mock call
  */
-export const mockCall = (data, timeout) => new Promise((resolve, reject) => {
-  setTimeout(() => {
-    if (data) {
-      resolve(data);
-    } else {
-      reject(new Error("No data for return"));
-    }
-  }, timeout);
-});
+function mockCall(data, timeout) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (data) {
+        resolve(data);
+      } else {
+        reject(new Error("No data for return"));
+      }
+    }, timeout);
+  });
+}
 
 // Documents -------------------------------------------------------------
 
-export const allDocuments = [
+const allDocuments = [
   {
     Thumbnail: "https://serverless-path-assets.s3.us-east-2.amazonaws.com/1rIBytIBHHSuH2PkAoTNeYMwLoj-thumb.png",
     Owner: "fc4cec10-6ae4-435c-98ca-6964382fee77",
@@ -119,7 +121,7 @@ export const allDocuments = [
   },
 ];
 
-export const documents = [
+const documents = [
   {
     Thumbnail: "https://serverless-path-assets.s3.us-east-2.amazonaws.com/1rIBytIBHHSuH2PkAoTNeYMwLoj-thumb.png",
     FileDetails: {
@@ -404,7 +406,7 @@ export const documents = [
 
 // Users -----------------------------------------------------------------
 
-export const profile = {
+const profile = {
   userId: "fc4cec10-6ae4-435c-98ca-6964382fee77",
   dateCreated: "2021-04-06T01:55:47.773Z",
   name: "David Tucker",
@@ -413,7 +415,7 @@ export const profile = {
   pictureURL: "https://serverless-path-assets.s3.us-east-2.amazonaws.com/profile/david.jpg",
 };
 
-export const profiles = [
+const profiles = [
   {
     userId: "9963149f-d388-4370-860a-b2f7fa1593d3",
     name: "Jane Williams",
@@ -451,7 +453,7 @@ export const profiles = [
   },
 ];
 
-export const allUsers = [
+const allUsers = [
   {
     userId: "9963149f-d388-4370-860a-b2f7fa1593d3",
     name: "Jane Williams",
@@ -514,31 +516,34 @@ export const allUsers = [
 
 const comments = {};
 
-const fakeComments = (documentId) => [
-  {
-    Comment: "Have you followed up with legal on this one? It needs a review.",
-    DateAdded: "2021-04-18T10:54:43.217Z",
-    SK: "Comment#1rL6zLz8U5wz6H8emruAP1e45V4",
-    PK: `${documentId}`,
-    Owner: "1a30ab9c-a1a4-43a2-99b7-0249c83890ad",
-  },
-  {
-    Comment: "This fits what we discussed.  I may add a few additional notes from our last meeting.",
-    DateAdded: "2021-04-18T10:51:43.217Z",
-    SK: "Comment#1rL6zLz8U5wz6H8emruAP1e45V6",
-    PK: `${documentId}`,
-    Owner: "4a0018fb-ac89-4359-aaf8-0b654e9af330",
-  },
-];
+function fakeComments(documentId) {
+  return [
+    {
+      Comment: "Have you followed up with legal on this one? It needs a review.",
+      DateAdded: "2021-04-18T10:54:43.217Z",
+      SK: "Comment#1rL6zLz8U5wz6H8emruAP1e45V4",
+      PK: `${documentId}`,
+      Owner: "1a30ab9c-a1a4-43a2-99b7-0249c83890ad",
+    },
+    {
+      Comment: "This fits what we discussed.  I may add a few additional notes from our last meeting.",
+      DateAdded: "2021-04-18T10:51:43.217Z",
+      SK: "Comment#1rL6zLz8U5wz6H8emruAP1e45V6",
+      PK: `${documentId}`,
+      Owner: "4a0018fb-ac89-4359-aaf8-0b654e9af330",
+    },
+  ];
+}
 
-export const getCommentsForDocument = (id) => {
+function getCommentsForDocument(id) {
   if (!comments[id]) {
     comments[id] = fakeComments(id);
   }
-  return comments[id];
-};
 
-export const createComment = (id, content) => {
+  return comments[id];
+}
+
+function createComment(id, content) {
   const newComment = {
     Comment: content,
     DateAdded: new Date().toISOString(),
@@ -551,4 +556,16 @@ export const createComment = (id, content) => {
   }
   comments[id].push(newComment);
   return newComment;
+}
+
+export {
+  allDocuments,
+  allUsers,
+  createComment,
+  documents,
+  fakeComments,
+  getCommentsForDocument,
+  mockCall,
+  profile,
+  profiles,
 };
