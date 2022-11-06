@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.1247.0",
+    "aws-sdk": "^2.1248.0",
     "ksuid": "^3.0.0"
   }
 }

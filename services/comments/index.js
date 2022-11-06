@@ -95,15 +95,15 @@ const router = createRouter(RouterType.HTTP_API_V2);
 // Get all comments for a document
 // GET /comments/{:docid}
 router.add(
-  Matcher.HttpApiV2("GET", "/comments/{:docid}"),
+  Matcher.HttpApiV2("GET", "/comments/(:docid)"),
   validatePathVariables(schemas.getComments),
   getAllCommentsForDocument,
 );
 
-// Create a new comment  for a document
+// Create a new comment for a document
 // POST /comments/{:docid}
 router.add(
-  Matcher.HttpApiV2("POST", "/comments/{:docid}"),
+  Matcher.HttpApiV2("POST", "/comments/(:docid)"),
   validateBodyJSONVariables(schemas.createComment),
   createComment,
 );
@@ -111,7 +111,7 @@ router.add(
 // Delete a comment for a document
 // DELETE /comments/{:docid}/{:commentid}
 router.add(
-  Matcher.HttpApiV2("DELETE", "/comments/{:docid}/{:commentid}"),
+  Matcher.HttpApiV2("DELETE", "/comments/(:docid)/(:commentid)"),
   validateBodyJSONVariables(schemas.deleteComment),
   deleteComment,
 );
