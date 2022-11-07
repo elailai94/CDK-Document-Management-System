@@ -23,6 +23,7 @@ class Storage extends Construct {
 
     this.uploadBucket = new s3.Bucket(this, "UploadBucket", {
       encryption: s3.BucketEncryption.S3_MANAGED,
+      eventBridgeEnabled: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
   }

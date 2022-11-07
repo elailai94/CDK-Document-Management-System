@@ -15,6 +15,7 @@ class Database extends Construct {
         name: "PK",
         type: dynamodb.AttributeType.STRING,
       },
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
       sortKey: {
         name: "SK",
         type: dynamodb.AttributeType.STRING,

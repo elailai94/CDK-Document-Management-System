@@ -42,6 +42,7 @@ class Processing extends Construct {
 
     // Thumbnail service
     const thumbnailService = new NodejsServiceFunction(this, "ThumbnailService", {
+      architecture: lambda.Architecture.X86_64,
       entry: path.join(__dirname, "..", "..", "..", "services", "processing", "thumbnail.js"),
       handler: "generateDocumentThumbnail",
       layers: [
