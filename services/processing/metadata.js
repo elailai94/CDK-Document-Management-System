@@ -50,6 +50,7 @@ async function getDocumentMetadata(event) {
     Bucket: process.env.ASSET_BUCKET,
     Key: event.detail.requestParameters.key,
   };
+
   await s3.putObject(putObjectParams).promise();
 
   return {

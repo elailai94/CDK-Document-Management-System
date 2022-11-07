@@ -39,6 +39,30 @@ class Processing extends Construct {
       lambdaFunction: metadataService,
       outputPath: "$.Payload",
     });
+
+    // Thumbnail service
+    const thumbnailService = new NodejsServiceFunction(this, "ThumbnailService", {
+      entry: path.join(__dirname, "..", "..", "..", "services", "processing", "thumbnail.js"),
+      handler: "generateDocumentThumbnail",
+      layers: [
+        lambda.LayerVersion.fromLayerVersionAttributes(this, "GhostscriptLayerVersion", {
+          compatibleRuntimes: [lambda.Runtime.NODEJS_16_X],
+          layerVersionArn: "arn:aws:lambda:us-east-1:764866452798:layer:ghostscript:12",
+        })
+      ],
+      timeout: cdk.Duration.seconds(120),
+    });
+
+    thumbnailService.addEnvironment("ASSET_BUCKET", props.assetBucket.bucketName);
+    thumbnailService.addEnvironment("UPLOAD_BUCKET", props.uploadBucket.bucketName);
+
+    props.assetBucket.grantWrite(thumbnailService);
+    props.uploadBucket.grantRead(thumbnailService);
+
+    const generateThumbnailLambdaInvoke = new stepfunctionsTasks.LambdaInvoke(this, "Generate Document Thumbnail", {
+      lambdaFunction: thumbnailService,
+      outputPath: "$.Payload",
+    });
   }
 }
 
