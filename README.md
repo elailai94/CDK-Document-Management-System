@@ -13,3 +13,8 @@
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+
+### About
+This repository contains practice code to provision infrastructure on Amazon Web Services (AWS) using the AWS Cloud Development Kit (CDK) and TypeScript. The code is based on the materials covered in the [Building Serverless Applications on AWS](https://app.pluralsight.com/paths/skill/building-serverless-applications-on-aws) path on Pluralsight by [David Tucker](https://github.com/davidtucker).
+
+The `cdk.json` file tells the CDK how to execute the app.

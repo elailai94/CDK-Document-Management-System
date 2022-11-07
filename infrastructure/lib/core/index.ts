@@ -3,6 +3,8 @@ import * as cdk from "aws-cdk-lib";
 import { API } from "./api";
 import { Construct } from "constructs";
 import { Database } from "./database";
+import { Events } from "./events";
+import { Processing } from "./processing";
 import { Services } from "./services";
 import { Storage } from "./storage";
 import { WebApp } from "./webapp";
@@ -24,6 +26,17 @@ class ApplicationStack extends cdk.Stack {
     const api = new API(this, "API", {
       commentsService: services.commentsService,
       documentsService: services.documentsService,
+    });
+
+    const processing = new Processing(this, "Processing", {
+      assetBucket: storage.assetBucket,
+      documentsTable: database.documentsTable,
+      uploadBucket: storage.uploadBucket,
+    });
+
+    new Events(this, "Events", {
+      processingStateMachine: processing.stateMachine,
+      uploadBucket: storage.uploadBucket,
     });
 
     new WebApp(this, "WebApp", {

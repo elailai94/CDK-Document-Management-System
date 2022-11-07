@@ -114,6 +114,68 @@ class Processing extends Construct {
       interval: cdk.Duration.seconds(5),
       maxAttempts: 100,
     });
+
+    // Insert service
+    const insertService = new NodejsServiceFunction(this, "InsertService", {
+      entry: path.join(__dirname, "..", "..", "..", "services", "processing", "insert.js"),
+      handler: "insertIntoTable",
+    });
+
+    insertService.addEnvironment("ASSET_BUCKET", props.assetBucket.bucketName);
+    insertService.addEnvironment("DYNAMO_DB_TABLE", props.documentsTable.tableName);
+    insertService.addEnvironment("UPLOAD_BUCKET", props.uploadBucket.bucketName);
+
+    insertService.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["dynamodb:UpdateItem"],
+        resources: [props.documentsTable.tableArn],
+      }),
+    );
+
+    props.assetBucket.grantReadWrite(insertService);
+    props.uploadBucket.grantReadWrite(insertService);
+
+    const insertIntoTableLambdaInvoke = new stepfunctionsTasks.LambdaInvoke(
+      this,
+      "Insert Metadata Into Table",
+      {
+        lambdaFunction: insertService,
+        outputPath: "$.Payload",
+      },
+    );
+
+    // Text detection process
+    const passStep = new stepfunctions.Pass(this, "Pass", {
+      inputPath: "$",
+      outputPath: "$",
+    });
+
+    const waitStep = new stepfunctions.Wait(this, "Wait", {
+      comment: "Wait before checking for text detection",
+      time: stepfunctions.WaitTime.duration(cdk.Duration.seconds(60)),
+    });
+
+    const completedChoice = new stepfunctions.Choice(this, "Completed");
+    completedChoice
+      .when(stepfunctions.Condition.stringEquals("$.textDetection.jobStatus", "SUCCEEDED"), passStep)
+      .otherwise(waitStep);
+
+    detectTextLambdaInvoke.next(waitStep);
+    waitStep.next(getResultsLambdaInvoke);
+    getResultsLambdaInvoke.next(completedChoice);
+
+    // Parallel step
+    const parallelStep = new stepfunctions.Parallel(this, "Parallel");
+    parallelStep.branch(generateThumbnailLambdaInvoke);
+    parallelStep.branch(detectTextLambdaInvoke);
+
+    // Step function
+    const workflow = getMetadataLambdaInvoke.next(parallelStep).next(insertIntoTableLambdaInvoke);
+
+    this.stateMachine = new stepfunctions.StateMachine(this, "StateMachine", {
+      definition: workflow,
+      timeout: cdk.Duration.minutes(30),
+    });
   }
 }
 
