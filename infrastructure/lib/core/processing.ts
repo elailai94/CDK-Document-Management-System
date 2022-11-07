@@ -48,7 +48,7 @@ class Processing extends Construct {
         lambda.LayerVersion.fromLayerVersionAttributes(this, "GhostscriptLayerVersion", {
           compatibleRuntimes: [lambda.Runtime.NODEJS_16_X],
           layerVersionArn: "arn:aws:lambda:us-east-1:764866452798:layer:ghostscript:12",
-        })
+        }),
       ],
       timeout: cdk.Duration.seconds(120),
     });
@@ -59,9 +59,60 @@ class Processing extends Construct {
     props.assetBucket.grantWrite(thumbnailService);
     props.uploadBucket.grantRead(thumbnailService);
 
-    const generateThumbnailLambdaInvoke = new stepfunctionsTasks.LambdaInvoke(this, "Generate Document Thumbnail", {
-      lambdaFunction: thumbnailService,
+    const generateThumbnailLambdaInvoke = new stepfunctionsTasks.LambdaInvoke(
+      this,
+      "Generate Document Thumbnail",
+      {
+        lambdaFunction: thumbnailService,
+        outputPath: "$.Payload",
+      },
+    );
+
+    // Detection service
+    const detectionService = new NodejsServiceFunction(this, "DetectionService", {
+      entry: path.join(__dirname, "..", "..", "..", "services", "processing", "detection.js"),
+      handler: "detectDocumentText",
+    });
+
+    detectionService.addEnvironment("UPLOAD_BUCKET", props.uploadBucket.bucketName);
+
+    detectionService.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["textract:StartDocumentTextDetection"],
+        resources: ["*"],
+      }),
+    );
+
+    props.uploadBucket.grantReadWrite(detectionService);
+
+    const detectTextLambdaInvoke = new stepfunctionsTasks.LambdaInvoke(this, "Detect Document Text", {
+      lambdaFunction: detectionService,
       outputPath: "$.Payload",
+    });
+
+    // Results service
+    const resultsService = new NodejsServiceFunction(this, "ResultsService", {
+      entry: path.join(__dirname, "..", "..", "..", "services", "processing", "results.js"),
+      handler: "getDetectionResults",
+      timeout: cdk.Duration.seconds(300),
+    });
+
+    resultsService.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["textract:GetDocumentTextDetection"],
+        resources: ["*"],
+      }),
+    );
+
+    const getResultsLambdaInvoke = new stepfunctionsTasks.LambdaInvoke(this, "Get Detection Results", {
+      lambdaFunction: resultsService,
+      outputPath: "$.Payload",
+    });
+
+    getResultsLambdaInvoke.addRetry({
+      backoffRate: 2,
+      interval: cdk.Duration.seconds(5),
+      maxAttempts: 100,
     });
   }
 }
