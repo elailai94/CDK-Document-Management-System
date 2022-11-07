@@ -4025,13 +4025,22 @@ __metadata:
     aws-cdk: 2.50.0
     aws-cdk-lib: 2.50.0
     cdk-webapp-tools: 2.49.3
-    constructs: ^10.1.150
+    constructs: ^10.1.151
     jest: ^29.2.2
     ts-jest: ^29.0.3
     ts-node: ^10.9.1
     typescript: ^4.8.4
   bin:
     infrastructure: bin/infrastructure.js
+  languageName: unknown
+  linkType: soft
+
+"@cdk-document-management-system/processing-service@workspace:services/processing":
+  version: 0.0.0-use.local
+  resolution: "@cdk-document-management-system/processing-service@workspace:services/processing"
+  dependencies:
+    lambda-micro: ^1.0.1
+    pdf-lib: ^1.17.1
   languageName: unknown
   linkType: soft
 
@@ -5255,6 +5264,24 @@ __metadata:
     mkdirp: ^1.0.4
     rimraf: ^3.0.2
   checksum: 52dc02259d98da517fae4cb3a0a3850227bdae4939dda1980b788a7670636ca2b4a01b58df03dd5f65c1e3cb70c50fa8ce5762b582b3f499ec30ee5ce1fd9380
+  languageName: node
+  linkType: hard
+
+"@pdf-lib/standard-fonts@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@pdf-lib/standard-fonts@npm:1.0.0"
+  dependencies:
+    pako: ^1.0.6
+  checksum: 7dc629b83862424a64b10c7ae34d789e0045a1a589f34a66a7f8e197f177cdb410969424e5d90f67b35c848db8b045cfa0a664941bdfb2d9b5413dbf44232981
+  languageName: node
+  linkType: hard
+
+"@pdf-lib/upng@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@pdf-lib/upng@npm:1.0.1"
+  dependencies:
+    pako: ^1.0.10
+  checksum: acd8ac0974a3c2ed12c4e21d6340c4f77f8dde6727a74075b2faf69fb9dc4051b9e576479caf8e870f67d1bb37b953dfe50c4784892b466f01a29b55272d5e1f
   languageName: node
   linkType: hard
 
@@ -8157,10 +8184,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"constructs@npm:^10.1.150":
-  version: 10.1.150
-  resolution: "constructs@npm:10.1.150"
-  checksum: df6fe5d5d6d3a8b809c0c33c61eb370a3b22c57e0acd56491fe5cb2b3dde3e6e2facf4fb23426c484fb7f4ad8d366ecf8ed46dcab4f4a62532b437562599df4c
+"constructs@npm:^10.1.151":
+  version: 10.1.151
+  resolution: "constructs@npm:10.1.151"
+  checksum: 33b00bff8f480d9d60b397542524dec2b59cdf441af41613870743a27e813c224548ffb8a277448cd209580f0d356610cc48b7d840ffc2d9063f0485a9467352
   languageName: node
   linkType: hard
 
@@ -13877,6 +13904,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pako@npm:^1.0.10, pako@npm:^1.0.11, pako@npm:^1.0.6":
+  version: 1.0.11
+  resolution: "pako@npm:1.0.11"
+  checksum: 1be2bfa1f807608c7538afa15d6f25baa523c30ec870a3228a89579e474a4d992f4293859524e46d5d87fd30fa17c5edf34dbef0671251d9749820b488660b16
+  languageName: node
+  linkType: hard
+
 "param-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "param-case@npm:3.0.4"
@@ -13987,6 +14021,18 @@ __metadata:
   version: 4.0.0
   resolution: "path-type@npm:4.0.0"
   checksum: 5b1e2daa247062061325b8fdbfd1fb56dde0a448fb1455453276ea18c60685bdad23a445dc148cf87bc216be1573357509b7d4060494a6fd768c7efad833ee45
+  languageName: node
+  linkType: hard
+
+"pdf-lib@npm:^1.17.1":
+  version: 1.17.1
+  resolution: "pdf-lib@npm:1.17.1"
+  dependencies:
+    "@pdf-lib/standard-fonts": ^1.0.0
+    "@pdf-lib/upng": ^1.0.1
+    pako: ^1.0.11
+    tslib: ^1.11.1
+  checksum: 0dae766f23de60ff071368073990cca0d30fb5d104c50a17fee00f0659a491f66e45ce80b1bbfe254e6915a5bc9079f42501dfff2e37f8f76a8807d3e321b19a
   languageName: node
   linkType: hard
 

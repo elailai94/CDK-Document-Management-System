@@ -16,7 +16,7 @@ import { awsClients, generateID } from "../common";
 
 // Utilize the DynamoDB document client
 const dynamoDB = awsClients.dynamoDB();
-const tableName = process.env.DYNAMO_DB_NAME;
+const tableName = process.env.DYNAMO_DB_TABLE;
 
 // JSON schemas used to validate requests to the service calls
 const schemas = {
