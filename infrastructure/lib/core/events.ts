@@ -1,7 +1,8 @@
+import * as cloudtrail from "aws-cdk-lib/aws-cloudtrail";
+import * as events from "aws-cdk-lib/aws-events";
 import * as eventsTargets from "aws-cdk-lib/aws-events-targets";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as stepfunctions from "aws-cdk-lib/aws-stepfunctions";
-import * as cloudtrail from "aws-cdk-lib/aws-cloudtrail";
 
 import { Construct } from "constructs";
 
@@ -24,6 +25,11 @@ class Events extends Construct {
     const stateMachineTarget = new eventsTargets.SfnStateMachine(props.processingStateMachine);
 
     uploadRule.addTarget(stateMachineTarget);
+
+    // Custom event bus for notification service
+    const eventBus = new events.EventBus(this, "EventBus", {
+      eventBusName: "com.globomantics.dms",
+    });
   }
 }
 
