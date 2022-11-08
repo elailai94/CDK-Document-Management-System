@@ -31,6 +31,13 @@ class Services extends Construct {
 
     this.commentsService.addEnvironment("DYNAMO_DB_TABLE", props.documentsTable.tableName);
 
+    this.commentsService.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["events:PutEvents"],
+        resources: ["*"],
+      }),
+    );
+
     props.documentsTable.grantReadWriteData(this.commentsService);
 
     // Documents service

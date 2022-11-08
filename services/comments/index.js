@@ -18,6 +18,9 @@ import { awsClients, generateID } from "../common";
 const dynamoDB = awsClients.dynamoDB();
 const tableName = process.env.DYNAMO_DB_TABLE;
 
+// Get the EventBridge client
+const eventBridge = awsClients.eventBridge();
+
 // JSON schemas used to validate requests to the service calls
 const schemas = {
   createComment: require("./schemas/createComment.json"),
@@ -58,6 +61,28 @@ async function createComment(request, response) {
   };
 
   await dynamoDB.put(params).promise();
+
+  /**
+   * Send comment event using EventBridge
+   * This will allow us to connect into this event for notifications
+   */
+  const detail = {
+    commentID,
+    documentID: request.pathVariables.docid,
+  };
+  const eventParams = {
+    Entries: [
+      {
+        Detail: JSON.stringify(detail),
+        DetailType: "CommentAdded",
+        EventBusName: "com.globomantics.dms",
+        Resources: [],
+        Source: "com.globomantics.dms.comments",
+      },
+    ],
+  };
+
+  await eventBridge.putEvents(eventParams).promise();
 
   return response.output(item, 200);
 }

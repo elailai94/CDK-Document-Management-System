@@ -35,6 +35,7 @@ class ApplicationStack extends cdk.Stack {
     });
 
     new Events(this, "Events", {
+      notificationsService: services.notificationsService,
       processingStateMachine: processing.stateMachine,
       uploadBucket: storage.uploadBucket,
     });

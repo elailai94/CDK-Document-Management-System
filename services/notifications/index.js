@@ -28,16 +28,16 @@ async function sendEmail(message, subject) {
 }
 
 async function handleCommentAdded(event) {
-  const { documentId, commentId } = event.detail;
+  const { documentID, commentID } = event.detail;
 
-  if (!documentId || !commentId) {
+  if (!documentID || !commentID) {
     // eslint-disable-next-line no-console
     console.error("Document ID and Comment ID not provided for notification from EventBridge");
     throw new Error("Could not send notifications for a comment");
   }
 
   const message = "Document Comment";
-  const subject = `Comment left on document ${documentId}`;
+  const subject = `Comment left on document ${documentID}`;
 
   try {
     await sendEmail(message, subject);
