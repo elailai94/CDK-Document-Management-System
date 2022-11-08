@@ -4025,7 +4025,7 @@ __metadata:
     aws-cdk: 2.50.0
     aws-cdk-lib: 2.50.0
     cdk-webapp-tools: 2.49.3
-    constructs: ^10.1.152
+    constructs: ^10.1.153
     jest: ^29.3.0
     ts-jest: ^29.0.3
     ts-node: ^10.9.1
@@ -8184,10 +8184,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"constructs@npm:^10.1.152":
-  version: 10.1.152
-  resolution: "constructs@npm:10.1.152"
-  checksum: 173ccf780cc314eb91a248232ca35df7ae0ba57e32f936237ee4dc271010c260fbd9b88f0805752ea26d60d38de5d3c98804dc8df767131965803ce8fa2f2ddf
+"constructs@npm:^10.1.153":
+  version: 10.1.153
+  resolution: "constructs@npm:10.1.153"
+  checksum: 2ada2807a0946326e99880c0bd641a7b11b613d9ff29b1f9563fdf10cd9606588c931d425dcf99b93d4d1f915d4acf75bf640900bbb6dd22f3201410c5e819dc
   languageName: node
   linkType: hard
 

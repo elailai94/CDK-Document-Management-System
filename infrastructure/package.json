@@ -23,6 +23,6 @@
     "@aws-cdk/aws-apigatewayv2-integrations-alpha": "2.50.0-alpha.0",
     "aws-cdk-lib": "2.50.0",
     "cdk-webapp-tools": "2.49.3",
-    "constructs": "^10.1.152"
+    "constructs": "^10.1.153"
   }
 }
