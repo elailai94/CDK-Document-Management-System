@@ -1,16 +1,16 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Backup as BackupIcon } from "@mui/icons-material";
 import { AppBar, Button, Toolbar } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 
+import { Backup as BackupIcon } from "@mui/icons-material";
+import React from "react";
 import UserBadge from "../components/UserBadge";
+import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    boxShadow: "none",
+    boxShadow: "none !important",
     borderBottom: "1px solid #EEE",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFFFF !important",
   },
   logoContainer: {
     flexGrow: 1,

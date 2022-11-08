@@ -1,6 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 
 import { API } from "./api";
+import { Auth } from "./auth";
 import { Construct } from "constructs";
 import { Database } from "./database";
 import { Events } from "./events";
@@ -33,6 +34,8 @@ class ApplicationStack extends cdk.Stack {
       documentsTable: database.documentsTable,
       uploadBucket: storage.uploadBucket,
     });
+
+    new Auth(this, "Auth");
 
     new Events(this, "Events", {
       notificationsService: services.notificationsService,
