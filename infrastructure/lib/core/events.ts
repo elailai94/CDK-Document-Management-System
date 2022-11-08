@@ -47,6 +47,19 @@ class Events extends Construct {
     });
 
     commentAddedRule.addTarget(new eventsTargets.LambdaFunction(props.notificationsService));
+
+    const failedProcessingRule = new events.Rule(this, "FailedProcessingRule", {
+      description: "When a PDF file fails processing",
+      enabled: true,
+      eventBus,
+      eventPattern: {
+        detailType: ["ProcessingFailed"],
+        source: ["com.globomantics.dms.processing"],
+      },
+      ruleName: "FailedProcessingRule",
+    });
+
+    failedProcessingRule.addTarget(new eventsTargets.LambdaFunction(props.notificationsService));
   }
 }
 

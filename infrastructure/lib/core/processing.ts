@@ -145,6 +145,37 @@ class Processing extends Construct {
       },
     );
 
+    // Error service
+    const errorService = new NodejsServiceFunction(this, "ErrorService", {
+      entry: path.join(__dirname, "..", "..", "..", "services", "processing", "error.js"),
+      handler: "handleError",
+    });
+
+    errorService.addEnvironment("ASSET_BUCKET", props.assetBucket.bucketName);
+    errorService.addEnvironment("DYNAMO_DB_TABLE", props.documentsTable.tableName);
+    errorService.addEnvironment("UPLOAD_BUCKET", props.uploadBucket.bucketName);
+
+    errorService.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["dynamodb:DeleteItem", "dynamodb:Query"],
+        resources: [props.documentsTable.tableArn],
+      }),
+    );
+
+    errorService.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["events:PutEvents"],
+        resources: ["*"],
+      }),
+    );
+
+    props.assetBucket.grantReadWrite(errorService);
+    props.uploadBucket.grantReadWrite(errorService);
+
+    const handleErrorLambdaInvoke = new stepfunctionsTasks.LambdaInvoke(this, "Handle Error", {
+      lambdaFunction: errorService,
+    });
+
     // Text detection process
     const passStep = new stepfunctions.Pass(this, "Pass", {
       inputPath: "$",
@@ -169,6 +200,15 @@ class Processing extends Construct {
     const parallelStep = new stepfunctions.Parallel(this, "Parallel");
     parallelStep.branch(generateThumbnailLambdaInvoke);
     parallelStep.branch(detectTextLambdaInvoke);
+
+    // Error step (in case of error or failure)
+    const catchProps: stepfunctions.CatchProps = {
+      resultPath: "$.error",
+    };
+
+    getMetadataLambdaInvoke.addCatch(handleErrorLambdaInvoke, catchProps);
+    parallelStep.addCatch(handleErrorLambdaInvoke, catchProps);
+    insertIntoTableLambdaInvoke.addCatch(handleErrorLambdaInvoke, catchProps);
 
     // Step function
     const workflow = getMetadataLambdaInvoke.next(parallelStep).next(insertIntoTableLambdaInvoke);

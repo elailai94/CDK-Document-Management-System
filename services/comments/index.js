@@ -19,7 +19,7 @@ const dynamoDB = awsClients.dynamoDB();
 const tableName = process.env.DYNAMO_DB_TABLE;
 
 // Get the EventBridge client
-const eventBridge = awsClients.eventBridge();
+const eventbridge = awsClients.eventbridge();
 
 // JSON schemas used to validate requests to the service calls
 const schemas = {
@@ -82,7 +82,7 @@ async function createComment(request, response) {
     ],
   };
 
-  await eventBridge.putEvents(eventParams).promise();
+  await eventbridge.putEvents(eventParams).promise();
 
   return response.output(item, 200);
 }
