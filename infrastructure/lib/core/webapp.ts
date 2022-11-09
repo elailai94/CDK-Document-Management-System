@@ -1,6 +1,7 @@
 import * as apigateway from "@aws-cdk/aws-apigatewayv2-alpha";
 import * as cdk from "aws-cdk-lib";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as cognito from "aws-cdk-lib/aws-cognito";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as webAppTools from "cdk-webapp-tools";
 
@@ -11,6 +12,8 @@ interface WebAppProps {
   hostingBucket: s3.IBucket;
   httpAPI: apigateway.HttpApi;
   relativeWebAppPath: string;
+  userPool: cognito.IUserPool;
+  userPoolClient: cognito.IUserPoolClient;
 }
 
 class WebApp extends Construct {
@@ -69,6 +72,8 @@ class WebApp extends Construct {
       bucket: props.hostingBucket,
       configData: {
         apiEndpoint: props.httpAPI.apiEndpoint,
+        userPoolId: props.userPool.userPoolId,
+        userPoolWebClientId: props.userPoolClient.userPoolClientId,
       },
       globalVariableName: "appConfig",
       key: "config.js",

@@ -13,6 +13,7 @@ import {
 import { makeStyles } from "@mui/styles";
 import { Auth } from "aws-amplify";
 
+import AuthGroupWrapper from "./AuthGroupWrapper";
 import { useUser } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -97,7 +98,9 @@ function UserBadge() {
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                   <MenuItem onClick={onProfileEdit}>Edit My Profile</MenuItem>
-                  <MenuItem onClick={onManageUsers}>Manage Users</MenuItem>
+                  <AuthGroupWrapper requiredGroups={["admin"]}>
+                    <MenuItem onClick={onManageUsers}>Manage Users</MenuItem>
+                  </AuthGroupWrapper>
                   <MenuItem onClick={signOut}>Logout</MenuItem>
                 </MenuList>
               </ClickAwayListener>

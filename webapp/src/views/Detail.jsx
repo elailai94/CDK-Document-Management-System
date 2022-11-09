@@ -15,6 +15,7 @@ import DocumentInfo from "./detail/DocumentInfo";
 import FileDetails from "./detail/FileDetails";
 import Metadata from "./detail/Metadata";
 import Tags from "./detail/Tags";
+import AuthGroupWrapper from "../components/AuthGroupWrapper";
 import LoadingView from "../components/LoadingView";
 import Page from "../containers/Page";
 import { getDocument, deleteDocument } from "../services";
@@ -108,16 +109,18 @@ function Detail() {
 
     return (
       <Grid container direction="row" alignItems="center" justify="flex-end" spacing={1}>
-        <Grid item>
-          <Button
-            variant="outlined"
-            color="secondary"
-            className={classes.uploadButton}
-            onClick={deleteCurrentDocument}
-          >
-            Delete Document
-          </Button>
-        </Grid>
+        <AuthGroupWrapper requiredGroups={["admin", "contributor"]}>
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="secondary"
+              className={classes.uploadButton}
+              onClick={deleteCurrentDocument}
+            >
+              Delete Document
+            </Button>
+          </Grid>
+        </AuthGroupWrapper>
         <Grid item>
           <Button
             variant="outlined"

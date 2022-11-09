@@ -62,3 +62,5 @@ class Auth extends Construct {
     });
   }
 }
+
+export { Auth };

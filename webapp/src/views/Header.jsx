@@ -1,10 +1,11 @@
-import { AppBar, Button, Toolbar } from "@mui/material";
-
-import { Backup as BackupIcon } from "@mui/icons-material";
 import React from "react";
-import UserBadge from "../components/UserBadge";
-import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
+import { AppBar, Button, Toolbar } from "@mui/material";
+import { Backup as BackupIcon } from "@mui/icons-material";
+import { makeStyles } from "@mui/styles";
+
+import AuthGroupWrapper from "../components/AuthGroupWrapper";
+import UserBadge from "../components/UserBadge";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,15 +40,17 @@ function Header() {
             onClick={() => navigate("/")}
           />
         </div>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => navigate("/upload")}
-          className={classes.uploadButton}
-          startIcon={<BackupIcon />}
-        >
-          Upload
-        </Button>
+        <AuthGroupWrapper requiredGroups={["admin", "contributor"]}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => navigate("/upload")}
+            className={classes.uploadButton}
+            startIcon={<BackupIcon />}
+          >
+            Upload
+          </Button>
+        </AuthGroupWrapper>
         <UserBadge />
       </Toolbar>
     </AppBar>

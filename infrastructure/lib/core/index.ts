@@ -14,6 +14,8 @@ class ApplicationStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    const auth = new Auth(this, "Auth");
+
     const database = new Database(this, "Database");
 
     const storage = new Storage(this, "Storage");
@@ -35,8 +37,6 @@ class ApplicationStack extends cdk.Stack {
       uploadBucket: storage.uploadBucket,
     });
 
-    new Auth(this, "Auth");
-
     new Events(this, "Events", {
       notificationsService: services.notificationsService,
       processingStateMachine: processing.stateMachine,
@@ -48,6 +48,8 @@ class ApplicationStack extends cdk.Stack {
       hostingBucket: storage.hostingBucket,
       httpAPI: api.httpAPI,
       relativeWebAppPath: "webapp",
+      userPool: auth.userPool,
+      userPoolClient: auth.userPoolClient,
     });
   }
 }
