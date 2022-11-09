@@ -242,18 +242,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui-react-core@npm:1.0.4":
-  version: 1.0.4
-  resolution: "@aws-amplify/ui-react-core@npm:1.0.4"
+"@aws-amplify/ui-react-core@npm:1.0.5":
+  version: 1.0.5
+  resolution: "@aws-amplify/ui-react-core@npm:1.0.5"
   dependencies:
-    "@aws-amplify/ui": 4.0.1
+    "@aws-amplify/ui": 4.1.0
     "@xstate/react": 3.0.1
     xstate: ^4.33.6
   peerDependencies:
     aws-amplify: 3.x.x || 4.x.x
     react: ">= 16.8.0"
     react-dom: ">= 16.8.0"
-  checksum: 35ef8c43d4f96ca3cfebb79e293a9e6c95005c9898f68336f235da05a518a2a12d2d603e6d798a5d5c1597a014a72c21c5497bc58c9245e8862e5ed6750d5126
+  checksum: 2f951bf687cb1937ac8b3fdb3695c0ad590046e70bb7edee88dac4466ffe8cc1ec00f24e2339633bef2d53a0593ee31e0e0ae53a931f52e361cd664dc215d031
   languageName: node
   linkType: hard
 
@@ -269,12 +269,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui-react@npm:^3.5.11":
-  version: 3.5.11
-  resolution: "@aws-amplify/ui-react@npm:3.5.11"
+"@aws-amplify/ui-react@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "@aws-amplify/ui-react@npm:3.6.0"
   dependencies:
-    "@aws-amplify/ui": 4.0.1
-    "@aws-amplify/ui-react-core": 1.0.4
+    "@aws-amplify/ui": 4.1.0
+    "@aws-amplify/ui-react-core": 1.0.5
     "@aws-amplify/ui-react-v1": "npm:@aws-amplify/ui-react@1.2.9"
     "@radix-ui/react-accordion": 0.1.6
     "@radix-ui/react-dropdown-menu": 0.1.6
@@ -297,7 +297,7 @@ __metadata:
   peerDependenciesMeta:
     aws-amplify:
       optional: true
-  checksum: fcdf3a4faf6e27d821fa780dc27ff278c042dbebdbaa1f855cfa248afe819044b25394b2ebbd217238fc9041d195af5b260c99abe5ba87aaadba6137542f9924
+  checksum: 184f957eb5d790dbb8fdd5a3cc0c211f1c1638172f18ea4eccc417a7567548300f053d6421e0bfc329629dc32461e1b409282a25db85002d83af12b96b861e67
   languageName: node
   linkType: hard
 
@@ -308,9 +308,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui@npm:4.0.1":
-  version: 4.0.1
-  resolution: "@aws-amplify/ui@npm:4.0.1"
+"@aws-amplify/ui@npm:4.1.0":
+  version: 4.1.0
+  resolution: "@aws-amplify/ui@npm:4.1.0"
   dependencies:
     lodash: 4.17.21
     style-dictionary: 3.7.0
@@ -321,7 +321,7 @@ __metadata:
   peerDependenciesMeta:
     xstate:
       optional: true
-  checksum: 9c12423890419a67cc52c5af481b5e68c0ccce8bb6a3d1a0761f109a249c5c8cdb500b9bf3e6b6e19cd584db9622d62daa1adbdab243cebee0f6cde096f57ba0
+  checksum: e064217d2e0789c4e1e25ba06c33ff2c132fc2e6b45115fa4ab8914d47e8beffa896b7dbdbfbc55bf2362df4cf79b622c225d586de1a49d3145f32a75947799e
   languageName: node
   linkType: hard
 
@@ -4177,7 +4177,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cdk-document-management-system/services-common@workspace:services/common"
   dependencies:
-    aws-sdk: ^2.1249.0
+    aws-sdk: ^2.1250.0
     ksuid: ^3.0.0
   languageName: unknown
   linkType: soft
@@ -4187,7 +4187,7 @@ __metadata:
   resolution: "@cdk-document-management-system/webapp@workspace:webapp"
   dependencies:
     "@aws-amplify/ui-components": ^1.9.40
-    "@aws-amplify/ui-react": ^3.5.11
+    "@aws-amplify/ui-react": ^3.6.0
     "@emotion/react": ^11.10.5
     "@emotion/styled": ^11.10.5
     "@material-ui/core": ^4.12.4
@@ -4199,6 +4199,7 @@ __metadata:
     "@testing-library/user-event": ^14.4.3
     aws-amplify: ^4.3.43
     axios: ^1.1.3
+    axios-auth-refresh: ^3.3.4
     eslint-config-airbnb: ^19.0.4
     eslint-plugin-react: ^7.31.10
     material-ui-chip-input: ^1.1.0
@@ -8120,9 +8121,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:^2.1249.0":
-  version: 2.1249.0
-  resolution: "aws-sdk@npm:2.1249.0"
+"aws-sdk@npm:^2.1250.0":
+  version: 2.1250.0
+  resolution: "aws-sdk@npm:2.1250.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -8134,7 +8135,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.4.19
-  checksum: 57149d80aaee66d1e6645b1036e9fca312859a977c62fb333fef20d1404b11245b7020e6d88bcc5598887aefde3f49d9419ecdc3d51a9bb771922e018c73e5aa
+  checksum: d08ebd004a8006dfe3388f1538e443dbac5151303a7918e8f3d6b7243ac11e4b96895e8f1f561a4b5f088754b37c6d447011880870211f116c0e7c9a74439465
   languageName: node
   linkType: hard
 
@@ -8142,6 +8143,15 @@ __metadata:
   version: 4.5.0
   resolution: "axe-core@npm:4.5.0"
   checksum: 05b5fa52a8ed8498215cec4a43253d115cc2b43616e840768e05b1b00d6789e7480e5b29159920a45a9504489423836b2fe65a49a67b54cbc5d53b1b37245750
+  languageName: node
+  linkType: hard
+
+"axios-auth-refresh@npm:^3.3.4":
+  version: 3.3.4
+  resolution: "axios-auth-refresh@npm:3.3.4"
+  peerDependencies:
+    axios: ">= 0.18 < 0.19.0 || >= 0.19.1"
+  checksum: 12ac40f73c144fbc29fbbcafce953b75158c999c0b66d1a98cf624f9c8508b7bb698a196774f8ff1f6e60b70feac44ae1dc143d4bb95ff75dff3b7890e5d1cec
   languageName: node
   linkType: hard
 
