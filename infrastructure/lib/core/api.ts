@@ -1,16 +1,20 @@
 import * as apigateway from "@aws-cdk/aws-apigatewayv2-alpha";
 import * as apigatewayv2 from "aws-cdk-lib/aws-apigatewayv2";
 import * as cdk from "aws-cdk-lib";
+import * as cognito from "aws-cdk-lib/aws-cognito";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as sqs from "aws-cdk-lib/aws-sqs";
 
 import { Construct } from "constructs";
+import { HttpUserPoolAuthorizer } from "@aws-cdk/aws-apigatewayv2-authorizers-alpha";
 import { HttpLambdaIntegration } from "@aws-cdk/aws-apigatewayv2-integrations-alpha";
 
 interface APIProps {
   commentsService: lambda.IFunction;
   documentsService: lambda.IFunction;
+  userPool: cognito.IUserPool;
+  userPoolClient: cognito.IUserPoolClient;
 }
 
 class API extends Construct {
@@ -45,10 +49,16 @@ class API extends Construct {
       createDefaultStage: true,
     });
 
+    // Authorizer
+    const authorizer = new HttpUserPoolAuthorizer("HttpUserPoolAuthorizer", props.userPool, {
+      userPoolClients: [props.userPoolClient],
+    });
+
     // Comments service
     const commentsIntegration = new HttpLambdaIntegration("CommentsIntegration", props.commentsService);
 
     this.httpAPI.addRoutes({
+      authorizer,
       integration: commentsIntegration,
       methods: serviceMethods,
       path: "/comments/{proxy+}",
@@ -58,6 +68,7 @@ class API extends Construct {
     const documentsIntegration = new HttpLambdaIntegration("DocumentsIntegration", props.documentsService);
 
     this.httpAPI.addRoutes({
+      authorizer,
       integration: documentsIntegration,
       methods: serviceMethods,
       path: "/documents/{proxy+}",
