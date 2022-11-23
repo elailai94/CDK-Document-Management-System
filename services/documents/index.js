@@ -12,6 +12,7 @@ import {
   Matcher,
   RouterType,
   createRouter,
+  enforceGroupMembership,
   parseMultipartFormData,
   validateMultipartFormData,
   validatePathVariables,
@@ -185,12 +186,14 @@ router.add(
 
 router.add(
   Matcher.HttpApiV2("DELETE", "/documents(/:id)"),
+  enforceGroupMembership(["admin", "contributor"]),
   validatePathVariables(schemas.idPathVariable),
   deleteDocument,
 );
 
 router.add(
   Matcher.HttpApiV2("POST", "/documents/"),
+  enforceGroupMembership(["admin", "contributor"]),
   parseMultipartFormData,
   validateMultipartFormData(schemas.createDocument),
   createDocument,
